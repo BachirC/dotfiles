@@ -15,7 +15,6 @@ Plug 'tpope/vim-dispatch' " Asynchronous tasks from VIM.
 Plug 'elixir-lang/vim-elixir' " Elixir in VIM.
 Plug 'godlygeek/tabular' " markdown dependence
 Plug 'plasticboy/vim-markdown' " markdown  VIM
-Plug 'greplace.vim' " Search and Replace in all files
 Plug 'tpope/vim-endwise' " Automatically close blocks and such
 Plug 'takac/vim-hardtime' " avoid jjjj kkkk
 Plug 'henrik/vim-qargs' " vim-qargs
@@ -26,6 +25,7 @@ Plug 'mxw/vim-jsx' " Add JSX highlighter
 Plug 'alvan/vim-closetag' " Automatic closing tags for HTML
 Plug 'ekalinin/Dockerfile.vim' " Docker highlighting
 Plug 'w0rp/ale' " Asynchronous Lint Engine
+Plug 'ctrlpvim/ctrlp.vim' " Search files
 
 call plug#end()
 

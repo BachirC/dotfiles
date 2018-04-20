@@ -3,11 +3,11 @@
 [user]
 	name = Bachir Çaoui
 	email = bachir.caoui@gmail.com
-	signingkey = 4F727F716E9371B35BD9A5B58B3EC1A12563DC3E
+	signingkey = A594EB322682F168
 [push]
 	default = simple
 [core]
-	excludesfile = /Users/BachirC/.gitignore_global
+	excludesfile = /Users/bachir/.gitignore_global
 [commit]
 	gpgsign = true
 [gpg]

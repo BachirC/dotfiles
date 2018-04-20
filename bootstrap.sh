@@ -26,3 +26,6 @@ done
 
 source ~/.bashrc
 source ~/.bash_profile
+
+# Setup git with global gitignore
+git config --global core.excludesfile ~/.gitignore_global

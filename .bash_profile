@@ -87,3 +87,4 @@ test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
 
 # ls only symbolic links
 alias ls_sym="find . -maxdepth 1 -type l -ls"
+export GPG_TTY=$(tty)

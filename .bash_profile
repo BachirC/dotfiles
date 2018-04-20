@@ -55,9 +55,6 @@ export PATH="/usr/local/sbin:$PATH"
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-# pyton version manager loading
-eval "$(pyenv init -)"
-
 ### Elixir
 if [ -f "$HOME/bash_completion.d/mix" ] ; then
   source $HOME/bash_completion.d/mix

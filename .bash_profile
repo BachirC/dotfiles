@@ -87,3 +87,13 @@ alias ls_sym="find . -maxdepth 1 -type l -ls"
 export GPG_TTY=$(tty)
 export PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(anyenv init -)"
+
+export PATH="$HOME/.bin:$PATH"
+
+# Autojump
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+# Source confidential stuff.
+if [ -f ~/.secrets.bash ]; then
+  . ~/.secrets.bash
+fi

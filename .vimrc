@@ -72,6 +72,7 @@ set wildignore+=*node_modules,*deps,_build,*public
 
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|node_modules|deps|_build)$'
 let g:ctrlp_show_hidden = 1
+let g:ctrlp_working_path_mode = 0
 
 set autoindent   " Copy indentation for new line.
 set smartindent  " Autoindent.

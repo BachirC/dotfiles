@@ -40,7 +40,20 @@ Thumbs.db
 *.swn
 *.swe
 *.swo
+*.swm
 
 # ENV file #
 ############
 .env
+
+# Ctags file #
+**/tags
+
+# version files
+.*-version
+
+# elixir formatter
+.formatter.exs
+
+# iex config file
+.iex.exs

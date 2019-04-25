@@ -11,9 +11,12 @@ alias ga='git add '
 alias gch='git checkout '
 alias gst='git stash '
 alias gss='git status '
+alias gbr='git branch '
+alias gpu='git pull '
 # Pass commit hash to list all files affected
 alias gls='git diff-tree --no-commit-id --name-only -r'
 alias git='hub'
+alias hexdocs='mix hex.docs online'
 __git_complete g _git
 __git_complete gch _git_checkout
 __git_complete gdf _git_diff
@@ -29,14 +32,19 @@ function parse_git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)$(parse_git_stash)/"
 }
 
+# Open conflicting files in vim
+function editconflicts() {
+  vim +/"<<<<<<<" $( git diff --name-only --diff-filter=U | xargs )
+}
+
 ### Docker
 
 alias dco='docker-compose '
 
 ### Prompt
 
-export PS1="\[\e[0;93m\]\w \[\e[0m\]\[\e[32m\]\$(parse_git_branch)\[\e[00m\] $ "
-export HISTSIZE=100000
+export PS1="\[\e[0;93m\]\W \[\e[0m\]\[\e[32m\]\$(parse_git_branch)\[\e[00m\] $ "
+export HISTSIZE=1000000
 export NVM_DIR="/Users/BachirC/.nvm"
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
@@ -59,6 +67,9 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if [ -f "$HOME/bash_completion.d/mix" ] ; then
   source $HOME/bash_completion.d/mix
 fi # mix autocompletion
+
+alias mixf_diff="git diff --name-only --relative=src/services/invoice origin/master | grep \
+'.exs\?$' | xargs mix format"
 
 # Add Erlang Rebar3 to PATH
 export PATH=$PATH:/Users/BachirC/.cache/rebar3/bin
@@ -94,6 +105,28 @@ export PATH="$HOME/.bin:$PATH"
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 # Source confidential stuff.
-if [ -f ~/.secrets.bash ]; then
-  . ~/.secrets.bash
-fi
+[ -f ~/.secrets.bash ] && . ~/.secrets.bash
+
+
+# Confluent
+export ZK="localhost:2181"
+export KB="localhost:9092"
+export KAFKA_CLIENT_PATH=$HOME/confluent-5.0.0/bin
+export PATH="$KAFKA_CLIENT_PATH:$PATH"
+
+# Homebrew
+export HOMEBREW_AUTO_UPDATE_SECS=600000
+
+# heroku autocomplete setup
+HEROKU_AC_BASH_SETUP_PATH=/Users/bachir/Library/Caches/heroku/autocomplete/bash_setup && test -f $HEROKU_AC_BASH_SETUP_PATH && source $HEROKU_AC_BASH_SETUP_PATH;
+
+# hh
+# Whenever a command is executed, write it to a global history
+PROMPT_COMMAND="history -a ~/.bash_history.global; $PROMPT_COMMAND"
+# On C-r set HISTFILE and run hh
+bind -x '"\C-r": "HISTFILE=~/.bash_history.global hh"'
+export PATH="$HOME/.erlenv/bin:$PATH"
+
+. $HOME/.asdf/asdf.sh
+
+. $HOME/.asdf/completions/asdf.bash

@@ -10,6 +10,7 @@ Plug 'aliou/hybrid.vim' " Colorscheme
 Plug 'aliou/sql-heredoc.vim' " SQL heredoc highlighter.
 Plug 'tpope/vim-sensible' " Sensible defaults.
 Plug 'tpope/vim-fugitive' " Git in VIM.
+Plug 'tpope/vim-rhubarb' " Hub for Git.
 Plug 'tpope/vim-rails' " Rails in VIM.
 Plug 'tpope/vim-dispatch' " Asynchronous tasks from VIM.
 Plug 'elixir-lang/vim-elixir' " Elixir in VIM.
@@ -26,6 +27,12 @@ Plug 'alvan/vim-closetag' " Automatic closing tags for HTML
 Plug 'ekalinin/Dockerfile.vim' " Docker highlighting
 Plug 'w0rp/ale' " Asynchronous Lint Engine
 Plug 'ctrlpvim/ctrlp.vim' " Search files
+Plug 'vim-ruby/vim-ruby' " Ruby in VIM.
+Plug 'mileszs/ack.vim' " Search pattern across files.
+Plug 'scrooloose/nerdtree' " Directory tree.
+Plug 'vim-erlang/vim-erlang-runtime' " Erlang Runtime.
+Plug 'moll/vim-bbye' " Keep window when closing buffer.
+Plug 'JamshedVesuna/vim-markdown-preview' " Markdown preview.
 
 call plug#end()
 
@@ -68,11 +75,19 @@ set hlsearch
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 set wildignore+=*.DS_Store
 set wildignore+=*/tmp/*,*.so,*.sw?,*.zip,*.png,*.jpg
-set wildignore+=*node_modules,*deps,_build,*public
+set wildignore+=*node_modules,*deps,_build,*public,*bin,*cassettes
 
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|node_modules|deps|_build)$'
+let g:ctrlp_custom_ignore = 'cassettes|\v[\/]\.(git|hg|svn|node_modules|deps|_build)$'
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_working_path_mode = 0
+" if executable('ag')
+"   let g:ctrlp_user_command = 'ag %s -l --nocolor -g \""'
+" endif
+
+" Easy bindings for its various modes
+nmap <leader>bb :CtrlPBuffer<cr>
+nmap <leader>bm :CtrlPMixed<cr>
+nmap <leader>bs :CtrlPMRU<cr>
 
 set autoindent   " Copy indentation for new line.
 set smartindent  " Autoindent.
@@ -95,22 +110,28 @@ set linebreak
 set showbreak=>\ \ \
 
 set undofile " Maintain undo history between sessions
+" $ mkdir ~/.vim/undodir
 set undodir=~/.vim/undodir " Store undo histories in .vim/
 
 let g:ale_linters = {
-\   'ruby': ['rubocop'],
+\   'ruby': [''],
 \   'elixir': ['mix', 'credo'],
 \}
 
 let g:ale_fixers = {
 \   'ruby': ['rubocop'],
-\   'elixir': ['mix_format'],
+\   'elixir': [''],
 \   'javascript': ['prettier', 'eslint'],
+\}
+
+" Disable files
+let g:ale_pattern_options = {
+\   '.*_spec\.rb$': {'ale_enabled': 0}
 \}
 
 " Set this setting in vimrc if you want to fix files automatically on save.
 " This is off by default.
-let g:ale_fix_on_save = 1
+" let g:ale_fix_on_save = 1
 
 " Abbreviations
 cabbrev T tabnew
@@ -183,3 +204,31 @@ augroup statusline
   autocmd User ALELintPre  call s:status_ale_pre()
   autocmd User ALELintPost call s:status_ale_post()
 augroup END
+
+" vim-ruby config
+set nocompatible      " We're running Vim, not Vi!
+
+""" Buffers
+set hidden
+set switchbuf=useopen " Jump to first open window containing specified buffer
+" Open buffers list and ask for a buffer to open
+nnoremap gb :ls<CR>:b<Space>
+" Open a buffer in a vertical split
+nnoremap vb :ls<CR>:vert sb<Space>
+" Shortcut for bbye Bdelete
+nnoremap <leader>q :Bdelete<CR>
+
+" Jumplist
+function! GotoJump()
+  jumps
+  let j = input("Please select your jump: ")
+  if j != ''
+    let pattern = '\v\c^\+'
+    if j =~ pattern
+      let j = substitute(j, pattern, '', 'g')
+      execute "normal " . j . "\<c-i>"
+    else
+      execute "normal " . j . "\<c-o>"
+    endif
+  endif
+endfunction

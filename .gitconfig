@@ -2,7 +2,7 @@
 	ui = true
 [user]
 	name = Bachir Çaoui
-	email = bachir.caoui@gmail.com
+	email = bachir@heetch.com
 	signingkey = A594EB322682F168
 [push]
 	default = simple
@@ -12,3 +12,5 @@
 	gpgsign = true
 [gpg]
 	program = gpg
+[alias]
+	whatadded = log --diff-filter=A

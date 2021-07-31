@@ -1,3 +1,6 @@
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 ### Git
 
 if [ -f ~/.git-completion.bash ]; then
@@ -17,6 +20,7 @@ alias gpu='git pull '
 alias gls='git diff-tree --no-commit-id --name-only -r'
 alias git='hub'
 alias hexdocs='mix hex.docs online'
+alias gfix='$EDITOR `git diff --name-only --relative | uniq`'
 __git_complete g _git
 __git_complete gch _git_checkout
 __git_complete gdf _git_diff
@@ -59,10 +63,6 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 alias ..='cd ..'
 export PATH="/usr/local/sbin:$PATH"
 
-# rbenv
-
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
 ### Elixir
 if [ -f "$HOME/bash_completion.d/mix" ] ; then
   source $HOME/bash_completion.d/mix
@@ -70,10 +70,6 @@ fi # mix autocompletion
 
 alias mixf_diff="git diff --name-only --relative=src/services/invoice origin/master | grep \
 '.exs\?$' | xargs mix format"
-
-# Add Erlang Rebar3 to PATH
-export PATH=$PATH:/Users/BachirC/.cache/rebar3/bin
-export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
 
 # IEX history
 export ERL_AFLAGS="-kernel shell_history enabled"
@@ -92,12 +88,6 @@ export GOPATH=$(go env GOPATH)
 export PATH=$PATH:$GOPATH/bin
 
 test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
-
-# ls only symbolic links
-alias ls_sym="find . -maxdepth 1 -type l -ls"
-export GPG_TTY=$(tty)
-export PATH="$HOME/.anyenv/bin:$PATH"
-eval "$(anyenv init -)"
 
 export PATH="$HOME/.bin:$PATH"
 

@@ -1,0 +1,4 @@
+nvim/plugin
+.nvimlog
+nvim/.netrwhist
+.gitconfig

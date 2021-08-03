@@ -12,6 +12,11 @@ vimp.nnoremap('<leader>b', function()
   ts.buffers()
 end)
 
+-- Work: Search in legacy
+vimp.nnoremap('<leader>l<Space>', function()
+  ts.find_files({ search_dirs = {"apps", "delivery", "db"} })
+end)
+
 -- LSP mapping
 vimp.nnoremap('<leader>tr', function()
   ts.lsp_references()

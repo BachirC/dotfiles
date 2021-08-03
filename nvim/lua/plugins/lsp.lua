@@ -20,11 +20,13 @@ local on_attach = function(client, bufnr)
   --Defined in Telescope: buf_set_keymap('n', '<leader>kt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   buf_set_keymap('n', '<leader>tn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   --buf_set_keymap('n', '<leader>kr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<leader>te', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n', '<leader>tc', '<cmd>lua vim.lsp.buf.incoming_calls()<CR>', opts)
   buf_set_keymap('n', '<leader>to', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>', opts)
-  buf_set_keymap('n', '<leader>t', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap("n", "<leader>tf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+
+  buf_set_keymap('n', '<leader>te', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '<leader>tl', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  buf_set_keymap("n", "<leader>tx", "<cmd>lua vim.lsp.diagnostic.clear(0)<CR>", opts)
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and

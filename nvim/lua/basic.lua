@@ -25,3 +25,10 @@ local vimp = require('vimp')
 
 -- With karabiner mapping, this allows to use Tab for folding while not breaking <C-i> for forward jump.
 vimp.nnoremap('<F6>', '<C-i>')
+
+-- Quickfix list
+vimp.nnoremap('<leader>cn', ':cnext<CR>')
+vimp.nnoremap('<leader>cp', ':cprevious<CR>')
+vimp.nnoremap('<leader>co', ':copen<CR>')
+vimp.nnoremap('<leader>cc', ':cclose<CR>')
+vimp.nnoremap('<leader>cx', ':cex []<CR>') -- Clear qf list

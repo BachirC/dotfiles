@@ -13,7 +13,6 @@ local spec = function()
   use 'svermeulen/vimpeccable'
 
   -- Color scheme
-  -- use 'morhetz/gruvbox'
   use {
     'marko-cerovac/material.nvim',
     config = function() require('plugins/material') end

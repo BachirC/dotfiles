@@ -41,6 +41,7 @@ Thumbs.db
 *.swe
 *.swo
 *.swm
+.nvimlog
 
 # ENV file #
 ############

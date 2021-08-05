@@ -14,7 +14,7 @@ end)
 
 -- Work: Search in legacy
 vimp.nnoremap('<leader>l<Space>', function()
-  ts.find_files({ search_dirs = {"apps", "delivery", "db"} })
+  ts.find_files({ search_dirs = {"apps", "delivery"} })
 end)
 
 -- LSP mapping
@@ -82,6 +82,7 @@ require('telescope').setup{
     grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
     qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
     theme = "dropdown",
+		scroll_strategy = "cycle",
 
     -- Developer configurations: Not meant for general override
     buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker

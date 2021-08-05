@@ -6,9 +6,6 @@ local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-  --Enable completion triggered by <c-x><c-o>
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
   -- Mappings.
   local opts = { noremap=true, silent=true }
 
@@ -34,7 +31,7 @@ end
 local servers = {"gopls", "solargraph"}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
-    on_attach = on_attach,
+    on_attach = require'completion'.on_attach,
     flags = {
       debounce_text_changes = 150,
     }
@@ -75,3 +72,11 @@ end
 -- Run goimports on save.
 vim.cmd([[autocmd BufWritePre *.go lua goimports(1000)]])
 
+-- Options
+vim.g.completion_enable_auto_popup = 0
+
+-- Key mappings
+local vimp = require('vimp')
+
+vimp.imap('<TAB>', '<Plug>(completion_smart_tab)')
+vimp.imap('<S-TAB>', '<Plug>(completion_smart_s_tab)')

@@ -18,6 +18,17 @@ local spec = function()
     config = function() require('plugins/material') end
   }
 
+	-- Completion
+	use {
+		'nvim-lua/completion-nvim'
+	}
+
+  -- Code highlighting
+  use {
+    'nvim-treesitter/nvim-treesitter',
+		config = function() require('plugins/treesitter') end
+  }
+
   -- LSP
   use {
     'neovim/nvim-lspconfig',
@@ -25,12 +36,16 @@ local spec = function()
 		config = function() require('plugins/lsp') end
   }
 
-  -- Code highlighting
-  use {
-    'nvim-treesitter/nvim-treesitter',
-		config = function() require('plugins/treesitter') end
-  }
+	-- Github wrapper
+	use {
+		'lewis6991/gitsigns.nvim',
+		requires = {
+			'nvim-lua/plenary.nvim'
+		},
+		config = function()
+			require('gitsigns').setup()
+		end
+	}
 end
 
 require('packer').startup(spec)
-

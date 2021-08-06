@@ -32,3 +32,6 @@ vimp.nnoremap('<leader>cp', ':cprevious<CR>')
 vimp.nnoremap('<leader>co', ':copen<CR>')
 vimp.nnoremap('<leader>cc', ':cclose<CR>')
 vimp.nnoremap('<leader>cx', ':cex []<CR>') -- Clear qf list
+
+-- Open nvim conf folder
+vimp.map('<leader>vm', ':e ~/dotfiles/nvim<CR>')

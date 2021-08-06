@@ -1,9 +1,28 @@
 local nvim_lsp = require('lspconfig')
 
+vim.g.diagnostics_active = true
+function toggle_diagnostics()
+  if vim.g.diagnostics_active then
+    vim.g.diagnostics_active = false
+    vim.lsp.diagnostic.clear(0)
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
+  else
+    vim.g.diagnostics_active = true
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+      vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = true,
+        signs = true,
+        underline = true,
+        update_in_insert = false,
+      }
+    )
+  end
+end
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-	require('completion')
+  require('completion')
 
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -25,7 +44,7 @@ local on_attach = function(client, bufnr)
 
   buf_set_keymap('n', '<leader>te', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n', '<leader>tl', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  buf_set_keymap("n", "<leader>tx", "<cmd>lua vim.lsp.diagnostic.clear(0)<CR>", opts)
+	--buf_set_keymap("n", "<leader>tx", "<cmd>lua vim.lsp.diagnostic.clear(0)<CR>", opts)
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
@@ -82,3 +101,4 @@ local vimp = require('vimp')
 
 vimp.imap('<TAB>', '<Plug>(completion_smart_tab)')
 vimp.imap('<S-TAB>', '<Plug>(completion_smart_s_tab)')
+vimp.nnoremap('<leader>tx', function() toggle_diagnostics() end)

@@ -1,5 +1,6 @@
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
 # Load Git completion
@@ -38,7 +39,7 @@ zstyle ':vcs_info:*' enable git
 ### Bash
 
 alias ..='cd ..'
-alias openvimc='vim /Users/bachir/.config/nvim/init.vim'
+alias openvimc='vim /Users/bachir/.config/nvim/init.lua'
 
 # Editor
 alias vim='nvim'
@@ -75,3 +76,5 @@ bindkey -e
 
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH="/usr/local/opt/erlang@21/bin:$PATH"
+
+alias luamake=/usr/local/opt/lua-language-server/3rd/luamake/luamake

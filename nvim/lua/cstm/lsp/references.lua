@@ -1,7 +1,7 @@
-local vimp = require('vimp')
+local options = { noremap = true, silent = true }
 
 local on_attach = function(_)
-	vimp.nnoremap('gr', function() vim.lsp.buf.references() end)
+	vim.api.nvim_buf_set_keymap(0, "n", "C-[>", "<cmd>lua vim.lsp.buf.references()<CR>", options)
 end
 
 return {

@@ -1,7 +1,9 @@
-local vimp = require('vimp')
+local options = { noremap = true, silent = true }
 
-local on_attach = function(_)
-	vimp.nnoremap('gd', function() vim.lsp.buf.definition() end)
+local on_attach = function(client)
+	if not client.resolved_capabilities.goto_definition then return end
+
+	vim.api.nvim_buf_set_keymap(0, "n", "<C-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", options)
 end
 
 return {

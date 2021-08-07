@@ -18,17 +18,6 @@ vimp.nnoremap('<leader>l<Space>', function()
   ts.find_files({ search_dirs = {"apps", "delivery"} })
 end)
 
--- LSP mapping
-vimp.nnoremap('<leader>tr', function()
-  ts.lsp_references()
-end)
-vimp.nnoremap('<leader>ti', function()
-  ts.lsp_implementations()
-end)
-vimp.nnoremap('<leader>td', function()
-  ts.lsp_definitions()
-end)
-
 local actions = require('telescope.actions')
 require('telescope').setup{
   extensions = {

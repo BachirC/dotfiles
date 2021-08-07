@@ -3,10 +3,10 @@ local ts = require('telescope.builtin')
 
 -- Basic key mapping
 vimp.nnoremap('<leader><Space>', function()
-  ts.find_files()
+  ts.find_files({hidden = true})
 end)
 vimp.nnoremap('<leader>g', function()
-  ts.live_grep()
+  ts.live_grep({hidden = true})
 end)
 vimp.nnoremap('<leader>b', function()
   ts.buffers()

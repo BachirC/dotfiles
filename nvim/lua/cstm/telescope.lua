@@ -3,7 +3,8 @@ local ts = require('telescope.builtin')
 
 -- Basic key mapping
 vimp.nnoremap('<leader><Space>', function()
-  ts.find_files({hidden = true})
+	-- Include hidden files and symlinks
+  ts.find_files({hidden = true, follow = true})
 end)
 vimp.nnoremap('<leader>g', function()
   ts.live_grep({hidden = true})

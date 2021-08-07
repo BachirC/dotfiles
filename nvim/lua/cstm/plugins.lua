@@ -6,7 +6,7 @@ local spec = function()
   use {
     'nvim-telescope/telescope.nvim',
     requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
-    config = function() require('plugins/telescope') end
+    config = function() require('cstm.telescope') end
   }
 
   -- Vim-api wrapper
@@ -15,7 +15,7 @@ local spec = function()
   -- Color scheme
   use {
     'marko-cerovac/material.nvim',
-    config = function() require('plugins/material') end
+    config = function() require('cstm.material') end
   }
 
 	-- Completion
@@ -26,14 +26,14 @@ local spec = function()
   -- Code highlighting
   use {
     'nvim-treesitter/nvim-treesitter',
-		config = function() require('plugins/treesitter') end
+		config = function() require('cstm.treesitter') end
   }
 
   -- LSP
   use {
     'neovim/nvim-lspconfig',
 		run = ':TSUpdate',
-		config = function() require('plugins/lsp') end
+		config = function() require('cstm.lsp') end
   }
 
 	-- Github wrapper

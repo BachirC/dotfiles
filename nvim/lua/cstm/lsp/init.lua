@@ -1,5 +1,6 @@
 local on_attach = function(client)
 	require('cstm.lsp.definition').on_attach(client)
+	require('cstm.lsp.diagnostic').on_attach(client)
 	require('cstm.lsp.hover').on_attach(client)
 	require('cstm.lsp.implementation').on_attach(client)
 	require('cstm.lsp.references').on_attach(client)

@@ -1,12 +1,18 @@
 local function call()
-	-- current buffer and client
+	-- current buffer
 	local bufnr = 0
-	local client_id = 1
+
+	-- toggle all active clients
+	local clients = vim.lsp.get_active_clients()
 
 	if vim.b.lsp_diagnostic_enabled then
-		vim.lsp.diagnostic.disable(bufnr, client_id)
+		for _, client in pairs(clients) do
+			vim.lsp.diagnostic.disable(bufnr, client.id)
+		end
 	else
-		vim.lsp.diagnostic.enable(bufnr, client_id)
+		for _, client in pairs(clients) do
+		  vim.lsp.diagnostic.enable(bufnr, client.id)
+		end
 	end
 
 	vim.b.lsp_diagnostic_enabled = not vim.b.lsp_diagnostic_enabled

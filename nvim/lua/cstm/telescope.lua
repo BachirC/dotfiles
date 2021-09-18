@@ -18,6 +18,11 @@ vimp.nnoremap('<leader>l<Space>', function()
   ts.find_files({ search_dirs = {"apps", "delivery"} })
 end)
 
+-- Work: Grep in legacy
+vimp.nnoremap('<leader>lg', function()
+  ts.grep_string({ search_dirs = {"apps", "delivery"} })
+end)
+
 local actions = require('telescope.actions')
 require('telescope').setup{
   extensions = {
@@ -59,7 +64,7 @@ require('telescope').setup{
       },
     },
     file_sorter =  require'telescope.sorters'.get_fuzzy_file,
-    file_ignore_patterns = {},
+    file_ignore_patterns = {"mock", "cassettes"},
     generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
     winblend = 0,
     border = {},

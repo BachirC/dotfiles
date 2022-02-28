@@ -37,7 +37,7 @@ zstyle ':vcs_info:git:*' formats '%F{240}(%b)%r%f'
 zstyle ':vcs_info:*' enable git
 
 ### Bash
-
+alias ls="exa "
 alias ..='cd ..'
 alias openvimc='vim /Users/bachir/.config/nvim/init.lua'
 
@@ -62,11 +62,6 @@ setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# asdf
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
 # tmux
 alias tmux='tmux -2 '
 alias t='tmux'
@@ -74,7 +69,10 @@ alias t='tmux'
 # https://stackoverflow.com/questions/18835465/control-e-in-tmux-does-not-bring-me-to-end-of-line
 bindkey -e
 
-export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
-export PATH="/usr/local/opt/erlang@21/bin:$PATH"
+export PATH="$HOME/.config/nvim/lua-language-server/bin:$PATH"
 
-alias luamake=/usr/local/opt/lua-language-server/3rd/luamake/luamake
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

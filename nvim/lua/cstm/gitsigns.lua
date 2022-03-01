@@ -6,8 +6,8 @@ local on_attach = function(bufnr)
 		vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
 	end
 
-	map("n", "<leader>sn", "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true })
-	map("n", "<leader>sp", "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true })
+	map("n", "]s", "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true })
+	map("n", "[s", "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true })
 	map("n", "<leader>sr", "<cmd>Gitsigns reset_hunk<CR>")
 	map("n", "<leader>sS", "<cmd>Gitsigns stage_hunk<CR>")
 	map("n", "<leader>su", "<cmd>Gitsigns undo_stage_hunk<CR>")

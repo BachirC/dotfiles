@@ -1,6 +1,6 @@
 vim.g.mapleader = " "
 
-require("cstm.plugins")
+require("packages")
 require("cstm.basic")
 
 vim.cmd([[colorscheme despacio]])

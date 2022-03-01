@@ -1,108 +1,90 @@
-local vimp = require('vimp')
-local ts = require('telescope.builtin')
+local vimp = require("vimp")
+local ts = require("telescope.builtin")
 
 -- Basic key mapping
-vimp.nnoremap('<leader><Space>', function()
+vimp.nnoremap("<leader><Space>", function()
 	-- Include hidden files and symlinks
-  ts.find_files({hidden = true, follow = true})
+	ts.find_files({ hidden = true, follow = true })
 end)
-vimp.nnoremap('<leader>g', function()
-  ts.live_grep({hidden = true})
+vimp.nnoremap("<leader>g", function()
+	ts.live_grep({ hidden = true })
 end)
-vimp.nnoremap('<leader>b', function()
-  ts.buffers()
-end)
-
--- Work: Search in legacy
-vimp.nnoremap('<leader>l<Space>', function()
-  ts.find_files({ search_dirs = {"apps", "delivery"} })
+vimp.nnoremap("<leader>b", function()
+	ts.buffers()
 end)
 
--- Work: Grep in legacy
-vimp.nnoremap('<leader>lg', function()
-  ts.grep_string({ search_dirs = {"apps", "delivery"} })
-end)
-
-local actions = require('telescope.actions')
-require('telescope').setup{
-  extensions = {
-    fzf = {
-      fuzzy = false
-    }
-  },
-  defaults = {
-    mappings = {
-      i = {
+local actions = require("telescope.actions")
+require("telescope").setup({
+	extensions = {
+		fzf = {
+			fuzzy = false,
+		},
+	},
+	defaults = {
+		mappings = {
+			i = {
 				["<C-s>"] = actions.send_selected_to_qflist + actions.open_qflist,
-      },
-      n = {
+			},
+			n = {
 				["<C-s>"] = actions.send_selected_to_qflist + actions.open_qflist,
-      },
-    },
-    vimgrep_arguments = {
-      'rg',
-      '--color=never',
-      '--no-heading',
-      '--with-filename',
-      '--line-number',
-      '--column',
-      '--smart-case'
-    },
-    prompt_prefix="🔍 ",
-    selection_caret = "> ",
-    entry_prefix = "  ",
-    initial_mode = "insert",
-    selection_strategy = "reset",
-    sorting_strategy = "descending",
-    layout_strategy = "horizontal",
-    layout_config = {
-      preview_cutoff = 80,
-      horizontal = {
-        mirror = false,
-      },
-      vertical = {
-        mirror = false,
-      },
-    },
-    file_sorter =  require'telescope.sorters'.get_fuzzy_file,
-    file_ignore_patterns = {"mock", "cassettes"},
-    generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
-    winblend = 0,
-    border = {},
-    borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
-    color_devicons = true,
-    use_less = true,
-    path_display = {},
-    set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
-    file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
-    grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
-    qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
-    theme = "dropdown",
+			},
+		},
+		vimgrep_arguments = {
+			"rg",
+			"--color=never",
+			"--no-heading",
+			"--with-filename",
+			"--line-number",
+			"--column",
+			"--smart-case",
+		},
+		prompt_prefix = "🔍 ",
+		selection_caret = "> ",
+		entry_prefix = "  ",
+		initial_mode = "insert",
+		selection_strategy = "reset",
+		sorting_strategy = "descending",
+		layout_strategy = "horizontal",
+		layout_config = {
+			preview_cutoff = 80,
+			horizontal = {
+				mirror = false,
+			},
+			vertical = {
+				mirror = false,
+			},
+		},
+		file_sorter = require("telescope.sorters").get_fuzzy_file,
+		file_ignore_patterns = { "mock", "cassettes" },
+		generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+		winblend = 0,
+		border = {},
+		borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+		color_devicons = true,
+		use_less = true,
+		path_display = {},
+		set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
+		file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+		grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+		qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+		theme = "dropdown",
 		scroll_strategy = "cycle",
 
-    -- Developer configurations: Not meant for general override
-    buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
-  },
-  pickers = {
-    -- Special builtin config goes in here
-    buffers = {
-      sort_lastused = true,
-      theme = "dropdown",
-      previewer = false,
-      mappings = {
-        i = {
-          ["<C-u>"] = require("telescope.actions").delete_buffer, -- FIXME
-        },
-        n = {
-          ["<C-u>"] = require("telescope.actions").delete_buffer, -- FIXME
-        }
-      }
-    },
-    find_files = {
-      theme = "dropdown",
-    },
-    live_grep = {
-      theme = "dropdown",
-    }
-  },
-}
+		-- Developer configurations: Not meant for general override
+		buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
+	},
+	pickers = {
+		-- Special builtin config goes in here
+		buffers = {
+			sort_lastused = true,
+			theme = "dropdown",
+			previewer = false,
+		},
+		find_files = {
+			theme = "dropdown",
+		},
+		live_grep = {
+			theme = "dropdown",
+		},
+	},
+})

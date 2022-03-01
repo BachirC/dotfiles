@@ -2,8 +2,25 @@ local spec = function()
 	-- Packer
 	use("wbthomason/packer.nvim")
 
+	use({
+		"ruifm/gitlinker.nvim",
+		requires = "nvim-lua/plenary.nvim",
+		config = function()
+			require("cstm.gitlinker")
+		end,
+	})
+
+	-- Dim inactive windows
+	use("blueyed/vim-diminactive")
+
 	-- Enhanced surrounding characters manipulation
 	use("tpope/vim-surround")
+
+	-- More intuitive navigation
+	use("tpope/vim-unimpaired")
+
+	-- Autoclose code tags
+	use("windwp/nvim-ts-autotag")
 
 	use({
 		"jose-elias-alvarez/null-ls.nvim",

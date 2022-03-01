@@ -40,9 +40,9 @@ local on_attach = function(_)
 		options
 	)
 	-- Go to next diagnostic.
-	vim.api.nvim_buf_set_keymap(0, "n", "<leader>dn", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR> zz", options)
+	vim.api.nvim_buf_set_keymap(0, "n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR> zz", options)
 	-- Go to previous diagnostic.
-	vim.api.nvim_buf_set_keymap(0, "n", "<leader>dp", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR> zz", options)
+	vim.api.nvim_buf_set_keymap(0, "n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR> zz", options)
 	-- Display list of diagnostics of the given line.
 	vim.api.nvim_buf_set_keymap(
 		0,
